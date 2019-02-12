@@ -24,7 +24,7 @@ render负责将数据模型上的world游戏地图渲染到console上
 
 input负责接收输入，根据输入的wsad上下左右动态修改蛇头的朝向（forward），由于不能让输出操作阻塞游戏的渲染线程和数据模型刷新线程，因此要在goroutine里面跑input线程
 
-update负责游戏每一帧的数据更新，例如蛇的坐标移动，蛇头和food的碰撞侦测，碰撞食物后蛇头append一个node，蛇尾不动，代表整个蛇身长度增加1，并且generateFood调用后重新在随机位置生成一个新的food，然后原先的空位标记为空。碰撞墙壁（大于地图尺寸或者小于0）直接打印gameover然后exit主线程
+update负责游戏每一帧的数据更新，例如蛇的坐标移动，蛇头和food的碰撞侦测。当未与food碰撞，正常行走时，蛇头往当前朝向前进，list执行PushFront，值为蛇头前进后，蛇头所在的新坐标；然后蛇尾擦除，list执行snk.snake.Remove(snk.snake.Back())。当碰撞食物后蛇头append一个node，蛇尾不动，代表整个蛇身长度增加1，并且generateFood调用后重新在随机位置生成一个新的food，然后原先的空位标记为空。碰撞墙壁（大于地图尺寸或者小于0）直接打印gameover然后exit主线程
 
 # 现有不足
 - 未检测蛇吃自己。解决方案：在update里面增加一下蛇与自身的list结构里面所有坐标的碰撞检测代码
