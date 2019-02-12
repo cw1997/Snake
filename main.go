@@ -17,7 +17,7 @@ import (
 )
 
 const (
-	SIZE = 10
+	SIZE = 20
 	SPEED = 500
 )
 
@@ -164,14 +164,17 @@ func main() {
 
 	initialize()
 
+
+	// run input routine at GoRoutine
+	go func() {
+		for {
+			input()
+			time.Sleep(SPEED * time.Millisecond)
+		}
+	}()
+
 	for {
 		render()
-		go func() {
-			for {
-				time.Sleep(SPEED * time.Millisecond)
-				input()
-			}
-		}()
 		//input()
 		update()
 
