@@ -110,8 +110,8 @@ func update() {
 	//newHeadPos := snk.snake.Front().Value.(Position)
 
 	// if collise , snake die
-	gameover := newHeadPos.x<0 || newHeadPos.x>=SIZE || newHeadPos.y<0 || newHeadPos.y>=SIZE
-	if gameover {
+	gameOver := newHeadPos.x<0 || newHeadPos.x>=SIZE || newHeadPos.y<0 || newHeadPos.y>=SIZE
+	if gameOver {
 		fmt.Println("GAME OVER!!!")
 		fmt.Println("Thanks for play my game. author: cw1997.")
 		//for row:=0; row< SIZE-2; row++  {
@@ -169,7 +169,7 @@ func main() {
 	go func() {
 		for {
 			input()
-			time.Sleep(SPEED * time.Millisecond)
+			time.Sleep(SPEED/2 * time.Millisecond)
 		}
 	}()
 
