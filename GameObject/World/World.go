@@ -5,6 +5,7 @@ import (
 	Food "Snake/GameObject/Food"
 	Snake "Snake/GameObject/Snake"
 	"fmt"
+
 )
 
 const (
@@ -17,8 +18,6 @@ type World struct {
 }
 
 func (world *World) Render(snake Snake.Snake, food Food.Food) {
-	// clear console first
-	Console.ClearScreen()
 	// create renderWorld
 	renderWorld := world.OrginalWorld
 	// set food position to renderWorld
@@ -26,6 +25,8 @@ func (world *World) Render(snake Snake.Snake, food Food.Food) {
 	for i := range snake.Position {
 		renderWorld[snake.Position[i].Y][snake.Position[i].X] = snake.Color
 	}
+	// clear console first
+	Console.ClearScreen()
 
 	// render world
 	for x := range renderWorld {

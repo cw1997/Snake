@@ -7,27 +7,26 @@ date: 2019.2.11
 package main
 
 import (
-	"fmt"
-	"math/rand"
-	"time"
-
 	"Snake/Console"
 	GameObject "Snake/GameObject"
 	Food "Snake/GameObject/Food"
 	Snake "Snake/GameObject/Snake"
 	World "Snake/GameObject/World"
+	"fmt"
+	"math/rand"
+	"time"
+
 )
 
 // declare const
 const (
-	SIZE  = 20
-	SPEED = 500
+	DELAYINTERVAL = 500
 )
 
 // declare
 var (
-	GameWorld World.World 
-	snake Snake.Snake = Snake.Snake{
+	GameWorld World.World
+	snake     Snake.Snake = Snake.Snake{
 		Body: 1,
 		Position: []GameObject.Position{
 			{
@@ -61,18 +60,18 @@ func Update() {
 			// render world
 			GameWorld.Render(snake, food)
 			// sleep a duration to render again
-			time.Sleep(SPEED / 2 * time.Millisecond)
+			time.Sleep(DELAYINTERVAL / 2 * time.Millisecond)
 		}
 	}
-	if !State.GameON{
+	if !State.GameON {
 		Console.ClearScreen()
 		fmt.Println("Game Over")
 	}
 }
 
 func Start() {
-	for i :=0; i <20;i++ {
-		for j := 0;j<20;j++{
+	for i := 0; i < 20; i++ {
+		for j := 0; j < 20; j++ {
 			GameWorld.OrginalWorld[i][j] = "⬛"
 		}
 	}
